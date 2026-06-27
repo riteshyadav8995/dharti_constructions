@@ -171,9 +171,9 @@ const ProjectDetailPage = () => {
 
       {/* Timeline & Milestones */}
       <div className="bg-dhatri-card rounded-2xl border border-slate-700/50 shadow-xl p-8">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold text-white flex items-center">
-            <CheckCircle2 size={24} className="mr-2 text-dhatri-orange" />
+        <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-4 mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-white flex items-center">
+            <CheckCircle2 size={24} className="mr-2 shrink-0 text-dhatri-orange" />
             Project Timeline & Milestones
           </h2>
           <button 
@@ -202,11 +202,11 @@ const ProjectDetailPage = () => {
                     prog.status === 'delayed' ? 'bg-red-500 border-red-500' : 'bg-slate-800 border-slate-600'
                   }`}></div>
                   
-                  <div className="bg-slate-900/50 rounded-xl border border-slate-700/50 p-5">
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="text-lg font-bold text-white mb-1">{prog.milestone}</h3>
-                        <div className="flex items-center space-x-4 text-sm">
+                  <div className="bg-slate-900/50 rounded-xl border border-slate-700/50 p-4 md:p-5">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4">
+                      <div className="w-full sm:w-auto">
+                        <h3 className="text-lg font-bold text-white mb-2">{prog.milestone}</h3>
+                        <div className="flex flex-wrap items-center gap-3 text-sm">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded uppercase text-xs font-bold ${getStatusColor(prog.status)}`}>
                             {prog.status}
                           </span>
@@ -216,7 +216,7 @@ const ProjectDetailPage = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="text-right">
+                      <div className="text-left sm:text-right mt-2 sm:mt-0">
                         <span className="text-xl font-bold text-white">{prog.completionPercent}%</span>
                         <p className="text-xs text-slate-500 uppercase">Complete</p>
                       </div>
