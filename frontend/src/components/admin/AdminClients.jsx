@@ -23,7 +23,7 @@ const AdminClients = ({ clients, fetchClients, userInfo }) => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.put(`http://localhost:5000/api/auth/clients/${editingClient._id}`, formData, config);
+      await axios.put(`${import.meta.env.VITE_API_URL}/auth/clients/${editingClient._id}`, formData, config);
       setShowModal(false);
       setEditingClient(null);
       if (fetchClients) {

@@ -22,7 +22,7 @@ const ProjectsPage = () => {
   const fetchProjects = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      const res = await axios.get('http://localhost:5000/api/projects', config);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/projects`, config);
       setProjects(res.data);
     } catch (err) {
       console.error('Error fetching projects:', err);
@@ -84,7 +84,7 @@ const ProjectsPage = () => {
       // Note: for this quick demo we use clientName as string. Backend might expect an ObjectId if it refs 'User'.
       // If backend expects ObjectId for client, this might fail unless backend falls back to string or we have a dropdown of clients.
       // Assuming backend expects client objectId. If so, we need clients list.
-      await axios.post('http://localhost:5000/api/projects', newProject, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/projects`, newProject, config);
       setShowAddModal(false);
       fetchProjects();
     } catch (err) {

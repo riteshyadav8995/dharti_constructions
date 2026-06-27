@@ -35,7 +35,7 @@ const ProfilePage = () => {
       };
 
       const { data } = await axios.put(
-        'http://localhost:5000/api/auth/profile',
+        `${import.meta.env.VITE_API_URL}/auth/profile`,
         { name, password, company, phone },
         config
       );

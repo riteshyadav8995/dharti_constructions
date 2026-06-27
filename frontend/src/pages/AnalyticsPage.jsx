@@ -17,8 +17,8 @@ const AnalyticsPage = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
       const [projectsRes, paymentsRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects', config),
-        axios.get('http://localhost:5000/api/payments', config)
+        axios.get(`${import.meta.env.VITE_API_URL}/projects`, config),
+        axios.get(`${import.meta.env.VITE_API_URL}/payments`, config)
       ]);
       setProjects(projectsRes.data);
       setPayments(paymentsRes.data);
@@ -69,7 +69,7 @@ const AnalyticsPage = () => {
       const clientId = selectedProject ? (selectedProject.client?._id || selectedProject.client) : '';
       
       const paymentData = { ...newPayment, client: clientId };
-      await axios.post('http://localhost:5000/api/payments', paymentData, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/payments`, paymentData, config);
       setShowPaymentModal(false);
       setNewPayment({
         project: '', client: '', amount: '', paymentDate: new Date().toISOString().split('T')[0], status: 'completed', paymentMode: 'Bank Transfer', reference: ''

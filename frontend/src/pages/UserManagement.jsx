@@ -26,7 +26,7 @@ const UserManagement = () => {
   const fetchManagers = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      const res = await axios.get('http://localhost:5000/api/auth/sitemanagers', config);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/auth/sitemanagers`, config);
       setManagers(res.data);
     } catch (err) {
       console.error('Error fetching site managers:', err);
@@ -46,7 +46,7 @@ const UserManagement = () => {
 
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.post('http://localhost:5000/api/auth/sitemanagers', formData, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/auth/sitemanagers`, formData, config);
       setSuccess('User created successfully.');
       setFormData({ name: '', email: '', password: '', phone: '', role: 'site_manager', company: '' });
       fetchManagers();

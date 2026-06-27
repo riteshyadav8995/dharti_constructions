@@ -13,7 +13,7 @@ const AdminOverview = ({ userInfo }) => {
     const fetchAnalytics = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-        const res = await axios.get('http://localhost:5000/api/analytics/dashboard', config);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/analytics/dashboard`, config);
         setData(res.data);
       } catch (error) {
         console.error('Error fetching analytics:', error);

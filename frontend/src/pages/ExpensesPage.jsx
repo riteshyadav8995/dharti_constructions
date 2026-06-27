@@ -30,8 +30,8 @@ const ExpensesPage = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
       const [projectsRes, expensesRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects', config),
-        axios.get('http://localhost:5000/api/expenses', config)
+        axios.get(`${import.meta.env.VITE_API_URL}/projects`, config),
+        axios.get(`${import.meta.env.VITE_API_URL}/expenses`, config)
       ]);
       setProjects(projectsRes.data);
       setExpenses(expensesRes.data);
@@ -46,7 +46,7 @@ const ExpensesPage = () => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.post('http://localhost:5000/api/expenses', newExpense, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/expenses`, newExpense, config);
       setShowAddModal(false);
       setNewExpense({
         project: '', category: 'Materials', amount: '', date: new Date().toISOString().split('T')[0], description: ''

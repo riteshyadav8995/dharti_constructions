@@ -33,8 +33,8 @@ const ProjectDetailPage = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
       const [projRes, progRes] = await Promise.all([
-        axios.get(`http://localhost:5000/api/projects/${id}`, config),
-        axios.get(`http://localhost:5000/api/progress/project/${id}`, config)
+        axios.get(`${import.meta.env.VITE_API_URL}/projects/${id}`, config),
+        axios.get(`${import.meta.env.VITE_API_URL}/progress/project/${id}`, config)
       ]);
       setProject(projRes.data);
       setProjectUpdate({ status: projRes.data.status, completionPercentage: projRes.data.completionPercentage });
@@ -50,7 +50,7 @@ const ProjectDetailPage = () => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.put(`http://localhost:5000/api/projects/${id}`, projectUpdate, config);
+      await axios.put(`${import.meta.env.VITE_API_URL}/projects/${id}`, projectUpdate, config);
       setShowStatusModal(false);
       fetchProjectData();
     } catch (error) {
@@ -63,7 +63,7 @@ const ProjectDetailPage = () => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.post('http://localhost:5000/api/progress', { ...milestoneForm, project: id }, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/progress`, { ...milestoneForm, project: id }, config);
       setShowMilestoneModal(false);
       setMilestoneForm({ milestone: '', completionPercent: 0, status: 'pending', dueDate: '', note: '' });
       fetchProjectData();
@@ -114,7 +114,7 @@ const ProjectDetailPage = () => {
                   if (window.confirm('Are you sure you want to archive this project?')) {
                     try {
                       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-                      await axios.put(`http://localhost:5000/api/projects/${id}`, { isArchived: true }, config);
+                      await axios.put(`${import.meta.env.VITE_API_URL}/projects/${id}`, { isArchived: true }, config);
                       window.location.href = '/projects';
                     } catch (err) {
                       alert('Failed to archive');

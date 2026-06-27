@@ -22,8 +22,8 @@ const ClientDashboard = () => {
       try {
         const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
         const [profileRes, projectsRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/auth/profile', config),
-          axios.get('http://localhost:5000/api/projects', config)
+          axios.get(`${import.meta.env.VITE_API_URL}/auth/profile`, config),
+          axios.get(`${import.meta.env.VITE_API_URL}/projects`, config)
         ]);
         setClientProfile(profileRes.data);
         setProjects(projectsRes.data);
@@ -31,7 +31,7 @@ const ClientDashboard = () => {
         // Fetch progress for each project
         const progressObj = {};
         for (let p of projectsRes.data) {
-          const progRes = await axios.get(`http://localhost:5000/api/progress/project/${p._id}`, config);
+          const progRes = await axios.get(`${import.meta.env.VITE_API_URL}/progress/project/${p._id}`, config);
           progressObj[p._id] = progRes.data;
         }
         setProgressData(progressObj);
@@ -46,7 +46,7 @@ const ClientDashboard = () => {
   const fetchFinancials = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      const { data } = await axios.get(`http://localhost:5000/api/payments/client/me`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/payments/client/me`, config);
       setPayments(data);
       setShowModal(true);
     } catch (error) {

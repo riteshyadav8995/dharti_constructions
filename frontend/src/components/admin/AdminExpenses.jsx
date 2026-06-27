@@ -13,7 +13,7 @@ const AdminExpenses = ({ userInfo, projects }) => {
   const fetchExpenses = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/expenses', config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/expenses`, config);
       setExpenses(data);
     } catch (error) {
       console.error('Error fetching expenses:', error);
@@ -31,14 +31,14 @@ const AdminExpenses = ({ userInfo, projects }) => {
       if (invoiceFile) {
         const formData = new FormData();
         formData.append('file', invoiceFile);
-        const uploadRes = await axios.post('http://localhost:5000/api/upload', formData, {
+        const uploadRes = await axios.post(`${import.meta.env.VITE_API_URL}/upload`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         invoiceUrl = uploadRes.data;
       }
 
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.post('http://localhost:5000/api/expenses', { ...newExpense, invoiceUrl }, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/expenses`, { ...newExpense, invoiceUrl }, config);
       
       setShowAddModal(false);
       setNewExpense({ project: '', category: 'Material', vendor: '', amount: '', date: '', description: '' });

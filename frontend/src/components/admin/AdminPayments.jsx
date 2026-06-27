@@ -13,7 +13,7 @@ const AdminPayments = ({ userInfo, projects, clients }) => {
   const fetchPayments = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/payments', config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/payments`, config);
       setPayments(data);
     } catch (error) {
       console.error('Error fetching payments:', error);
@@ -31,14 +31,14 @@ const AdminPayments = ({ userInfo, projects, clients }) => {
       if (receiptFile) {
         const formData = new FormData();
         formData.append('file', receiptFile);
-        const uploadRes = await axios.post('http://localhost:5000/api/upload', formData, {
+        const uploadRes = await axios.post(`${import.meta.env.VITE_API_URL}/upload`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         receiptUrl = uploadRes.data;
       }
 
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.post('http://localhost:5000/api/payments', { ...newPayment, receiptUrl }, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/payments`, { ...newPayment, receiptUrl }, config);
       
       setShowAddModal(false);
       setNewPayment({ client: '', project: '', amount: '', paymentDate: '', status: 'completed', installmentType: 'Booking' });

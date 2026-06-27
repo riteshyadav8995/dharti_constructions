@@ -21,8 +21,8 @@ const AdminDashboard = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
       const [projectsRes, clientsRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects', config),
-        axios.get('http://localhost:5000/api/auth/clients', config)
+        axios.get(`${import.meta.env.VITE_API_URL}/projects`, config),
+        axios.get(`${import.meta.env.VITE_API_URL}/auth/clients`, config)
       ]);
       setProjects(projectsRes.data);
       setClients(clientsRes.data);

@@ -21,9 +21,9 @@ const ReportsPage = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
       const [projRes, payRes, expRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects', config),
-        axios.get('http://localhost:5000/api/payments', config),
-        axios.get('http://localhost:5000/api/expenses', config)
+        axios.get(`${import.meta.env.VITE_API_URL}/projects`, config),
+        axios.get(`${import.meta.env.VITE_API_URL}/payments`, config),
+        axios.get(`${import.meta.env.VITE_API_URL}/expenses`, config)
       ]);
       setProjects(projRes.data);
       setPayments(payRes.data);

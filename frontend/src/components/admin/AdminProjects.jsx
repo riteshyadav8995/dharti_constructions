@@ -12,7 +12,7 @@ const AdminProjects = ({ userInfo, projects, clients, fetchProjects }) => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-      await axios.post('http://localhost:5000/api/projects', newProject, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/projects`, newProject, config);
       setShowAddModal(false);
       setNewProject({ name: '', description: '', client: '', status: 'Planning', location: '', projectManager: '', startDate: '', endDate: '', budget: '' });
       fetchProjects();
