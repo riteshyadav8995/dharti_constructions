@@ -30,7 +30,7 @@ const LoginPage = () => {
             <Building2 size={32} className="text-white" />
           </div>
           <h2 className="text-center text-3xl font-extrabold text-white tracking-tight">
-            Sign in to Dharti Constructions
+            Sign in to Dhatri Constructions
           </h2>
 
         </div>
