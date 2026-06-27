@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dhatri-orange: #f97316;
+  --color-dhatri-dark: #0f172a;
+  --color-dhatri-sidebar: #1e293b;
+  --color-dhatri-card: #1e293b;
+  --color-dhatri-text: #f8fafc;
+  --color-dhatri-muted: #94a3b8;
+}
+
+body {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--color-dhatri-dark);
+  color: var(--color-dhatri-text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar for better UI */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dhatri-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-dhatri-sidebar);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dhatri-orange);
+}
